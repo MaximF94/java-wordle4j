@@ -124,7 +124,7 @@ public class WordleGame {
         return matchWords.get(index);
     }
 
-    public void validateWrite (String testWord) throws IncorrectWordLengthException, InvalidCharacterException,
+    public void validateWrite(String testWord) throws IncorrectWordLengthException, InvalidCharacterException,
             WordNotFoundInDictionary {
 
         if (!testWord.isBlank() && testWord.length() != 5) {
@@ -137,7 +137,7 @@ public class WordleGame {
             }
         }
 
-        if(!testWord.isBlank() && !dictionary.getWords().contains(testWord)) {
+        if (!testWord.isBlank() && !dictionary.getWords().contains(testWord)) {
             throw new WordNotFoundInDictionary("Слово отсутствует в словаре: " + testWord);
         }
 
