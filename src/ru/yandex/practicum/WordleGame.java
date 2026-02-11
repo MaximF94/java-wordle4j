@@ -67,7 +67,7 @@ public class WordleGame {
 
             } while (wordAnswer.length() != answer.length());
 
-            if(wordAnswer.equals(answer)) {
+            if (wordAnswer.equals(answer)) {
                 System.out.println("Вы отгадали слово: " + answer);
                 return;
             } else {
