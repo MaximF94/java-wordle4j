@@ -3,6 +3,9 @@ package ru.yandex.practicum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import ru.yandex.exceptions.IncorrectWordLengthException;
+import ru.yandex.exceptions.InvalidCharacterException;
+import ru.yandex.exceptions.WordNotFoundInDictionary;
 
 import java.util.HashMap;
 import java.util.Map;

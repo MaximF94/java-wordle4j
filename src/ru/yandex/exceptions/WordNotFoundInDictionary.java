@@ -1,6 +1,6 @@
-package ru.yandex.practicum;
+package ru.yandex.exceptions;
 
-public class WordNotFoundInDictionary extends Throwable {
+public class WordNotFoundInDictionary extends Exception {
 
     public WordNotFoundInDictionary(String message) {
         super(message);

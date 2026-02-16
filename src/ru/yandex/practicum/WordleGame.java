@@ -1,5 +1,10 @@
 package ru.yandex.practicum;
 
+import ru.yandex.exceptions.IncorrectWordLengthException;
+import ru.yandex.exceptions.InvalidCharacterException;
+import ru.yandex.exceptions.TooManyAttemptsException;
+import ru.yandex.exceptions.WordNotFoundInDictionary;
+
 import java.util.*;
 
 /*
@@ -15,6 +20,8 @@ import java.util.*;
 не забудьте про специальные типы исключений для игровых и неигровых ошибок
  */
 public class WordleGame {
+
+    public final int MAX_ATTEMPTS = 6;
 
     private String answer;
 
@@ -47,7 +54,7 @@ public class WordleGame {
         }
         String wordAnswer;
         steps = 1;
-        for (int i = 0; i < 5; i++) {
+        for (int i = 1; i < MAX_ATTEMPTS; i++) {
             do {
                 wordAnswer = scanner.nextLine();
 
@@ -65,34 +72,42 @@ public class WordleGame {
                     }
                 }
 
-            } while (wordAnswer.length() != answer.length());
+            } while (wordAnswer.length() != dictionary.MAX_LETTERS);
 
-            if (wordAnswer.equals(answer)) {
-                System.out.println("Вы отгадали слово: " + answer);
-                return;
-            } else {
-                for (int j = 0; j < answer.length(); j++) {
-                    if (wordAnswer.charAt(j) == answer.charAt(j)) {
-                        System.out.print("+");
-                        rightCharPositions.put(j,wordAnswer.charAt(j));
-                    } else if (randomWordLetters.contains(wordAnswer.charAt(j))) {
-                        System.out.print("^");
-                    } else {
-                        System.out.print("-");
-                    }
-                }
-                System.out.println();
-            }
-            steps++;
-            try {
-                if (steps >= 6) {
-                    throw new TooManyAttemptsException("Вы исчерпали все попытки");
-                }
-            } catch (TooManyAttemptsException e) {
-                logDebug.writeExceptionToFile(e.getMessage());
-            }
+            findWord(wordAnswer,answer,randomWordLetters);
         }
         System.out.println("Вы не угадали слово. Ответ: " + answer);
+    }
+
+    private void findWord(String wordAnswer, String answer, Set<Character> randomWordLetters) {
+        if (wordAnswer.equals(answer)) {
+            System.out.println("Вы отгадали слово: " + answer);
+            return;
+        } else {
+            for (int j = 0; j < dictionary.MAX_LETTERS; j++) {
+                if (wordAnswer.charAt(j) == answer.charAt(j)) {
+                    System.out.print("+");
+                    rightCharPositions.put(j,wordAnswer.charAt(j));
+                } else if (randomWordLetters.contains(wordAnswer.charAt(j))) {
+                    System.out.print("^");
+                } else {
+                    System.out.print("-");
+                }
+            }
+            System.out.println();
+        }
+        steps++;
+        //Решил добавить для примера здесь. Ранее обсуждали в ЛС.
+        //Хотел уточнить, как именно должен быть реализовать данный метод?
+        try (LogDebug logDebug1 = new LogDebug("log.txt")){
+            if (steps >= MAX_ATTEMPTS) {
+                throw new TooManyAttemptsException("Вы исчерпали все попытки");
+            }
+        } catch (TooManyAttemptsException e) {
+            logDebug.writeExceptionToFile(e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String findWordHint(Map<Integer,Character> positions) {
@@ -127,7 +142,7 @@ public class WordleGame {
     public void validateWrite(String testWord) throws IncorrectWordLengthException, InvalidCharacterException,
             WordNotFoundInDictionary {
 
-        if (!testWord.isBlank() && testWord.length() != 5) {
+        if (!testWord.isBlank() && testWord.length() != dictionary.MAX_LETTERS) {
             throw new IncorrectWordLengthException("Слово должно состоять из 5 букв.");
         }
 

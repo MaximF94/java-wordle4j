@@ -21,7 +21,7 @@ public class WordleDictionaryLoader {
     public WordleDictionary readWordsFromFile(String filename) {
 
         List<String> fileWords = new ArrayList<>();
-        List<String> finalWords = new ArrayList<>();
+
         try (BufferedReader fileReader = new BufferedReader(new FileReader(filename, StandardCharsets.UTF_8))) {
             while (fileReader.ready()) {
                 fileWords.add(fileReader.readLine());
@@ -29,16 +29,7 @@ public class WordleDictionaryLoader {
         } catch (IOException ex) {
             logDebug.writeExceptionToFile("Произошла ошибка во время чтения файла: " + ex.getMessage());
         }
-        String finalWord;
-        for (int i = 0; i < fileWords.size(); i++) {
-            finalWord = fileWords.get(i);
-            if (finalWord.length() == 5) {
-                finalWord = finalWord.toLowerCase();
-                finalWord = finalWord.replace("ё","е");
-                finalWords.add(finalWord);
-            }
-        }
 
-        return new WordleDictionary(logDebug,finalWords);
+        return new WordleDictionary(logDebug,fileWords);
     }
 }

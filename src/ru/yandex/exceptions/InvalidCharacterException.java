@@ -1,6 +1,6 @@
-package ru.yandex.practicum;
+package ru.yandex.exceptions;
 
-public class InvalidCharacterException extends Throwable {
+public class InvalidCharacterException extends Exception {
 
     public InvalidCharacterException(String message) {
         super(message);

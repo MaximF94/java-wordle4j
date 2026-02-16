@@ -4,21 +4,29 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-public class LogDebug {
+public class LogDebug implements AutoCloseable{
 
-    private String filename;
-
+    FileWriter writer;
     public LogDebug(String filename) {
-        this.filename = filename;
+        try {
+            writer = new FileWriter(filename, StandardCharsets.UTF_8,true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
+    //К сожалению, код перестал работать. Что я сделал не так?
     public void writeExceptionToFile(String exceptionInfo) {
-        try (FileWriter writer = new FileWriter(filename, StandardCharsets.UTF_8,true)) {
+        try {
             writer.write(exceptionInfo);
             writer.write("\n");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    @Override
+    public void close() throws Exception {
+        writer.close();
     }
 }

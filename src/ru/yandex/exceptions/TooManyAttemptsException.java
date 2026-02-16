@@ -1,6 +1,6 @@
-package ru.yandex.practicum;
+package ru.yandex.exceptions;
 
-public class TooManyAttemptsException extends Throwable {
+public class TooManyAttemptsException extends Exception {
 
     public TooManyAttemptsException(String message) {
         super(message);

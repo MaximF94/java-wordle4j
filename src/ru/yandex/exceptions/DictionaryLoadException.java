@@ -1,6 +1,6 @@
-package ru.yandex.practicum;
+package ru.yandex.exceptions;
 
-public class DictionaryLoadException extends Throwable {
+public class DictionaryLoadException extends Exception {
 
     public DictionaryLoadException(String message) {
         super(message);

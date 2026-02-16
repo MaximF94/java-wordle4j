@@ -1,6 +1,6 @@
-package ru.yandex.practicum;
+package ru.yandex.exceptions;
 
-public class IncorrectWordLengthException extends Throwable {
+public class IncorrectWordLengthException extends Exception {
 
     public IncorrectWordLengthException(String message) {
         super(message);
