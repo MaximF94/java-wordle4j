@@ -7,10 +7,10 @@ import java.nio.charset.StandardCharsets;
 public class LogDebug implements AutoCloseable {
 
     FileWriter writer;
-    
+
     public LogDebug(String filename) {
         try {
-            writer = new FileWriter(filename, StandardCharsets.UTF_8,true);
+            writer = new FileWriter(filename, StandardCharsets.UTF_8, true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

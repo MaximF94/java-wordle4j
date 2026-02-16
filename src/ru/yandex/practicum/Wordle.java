@@ -19,7 +19,7 @@ public class Wordle {
 
         WordleDictionaryLoader wordleDictionaryLoader = new WordleDictionaryLoader(logDebug);
         WordleDictionary wordleDictionary = wordleDictionaryLoader.readWordsFromFile("words_ru.txt");
-        WordleGame wordleGame = new WordleGame(logDebug,wordleDictionary);
+        WordleGame wordleGame = new WordleGame(logDebug, wordleDictionary);
 
         wordleGame.game();
 

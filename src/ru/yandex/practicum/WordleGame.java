@@ -38,7 +38,7 @@ public class WordleGame {
         this.dictionary = dictionary;
     }
 
-    Map<Integer,Character> rightCharPositions = new HashMap<>();
+    Map<Integer, Character> rightCharPositions = new HashMap<>();
 
     public void game() {
 
@@ -74,7 +74,7 @@ public class WordleGame {
 
             } while (wordAnswer.length() != dictionary.MAX_LETTERS);
 
-            findWord(wordAnswer,answer,randomWordLetters);
+            findWord(wordAnswer, answer, randomWordLetters);
         }
         System.out.println("Вы не угадали слово. Ответ: " + answer);
     }
@@ -87,7 +87,7 @@ public class WordleGame {
             for (int j = 0; j < dictionary.MAX_LETTERS; j++) {
                 if (wordAnswer.charAt(j) == answer.charAt(j)) {
                     System.out.print("+");
-                    rightCharPositions.put(j,wordAnswer.charAt(j));
+                    rightCharPositions.put(j, wordAnswer.charAt(j));
                 } else if (randomWordLetters.contains(wordAnswer.charAt(j))) {
                     System.out.print("^");
                 } else {
@@ -99,7 +99,7 @@ public class WordleGame {
         steps++;
         //Решил добавить для примера здесь. Ранее обсуждали в ЛС.
         //Хотел уточнить, как именно должен быть реализовать данный метод?
-        try (LogDebug logDebug1 = new LogDebug("log.txt")){
+        try (LogDebug logDebug1 = new LogDebug("log.txt")) {
             if (steps >= MAX_ATTEMPTS) {
                 throw new TooManyAttemptsException("Вы исчерпали все попытки");
             }
@@ -110,7 +110,7 @@ public class WordleGame {
         }
     }
 
-    public String findWordHint(Map<Integer,Character> positions) {
+    public String findWordHint(Map<Integer, Character> positions) {
         StringBuilder currentWord = new StringBuilder();
         int counter;
 

@@ -19,7 +19,7 @@ public class WordleDictionary {
     private List<String> gameWords;
     LogDebug logDebug;
 
-    public WordleDictionary(LogDebug logDebug,List<String> words) {
+    public WordleDictionary(LogDebug logDebug, List<String> words) {
         this.words = words;
         this.logDebug = logDebug;
 
@@ -42,7 +42,7 @@ public class WordleDictionary {
             finalWord = words.get(i);
             if (finalWord.length() == MAX_LETTERS) {
                 finalWord = finalWord.toLowerCase();
-                finalWord = finalWord.replace("ё","е");
+                finalWord = finalWord.replace("ё", "е");
                 finalWord = finalWord.trim();
                 gameWords.add(finalWord);
             }
@@ -60,8 +60,6 @@ public class WordleDictionary {
 
         return gameWords.get(index);
     }
-
-
 
 
 }

@@ -30,6 +30,6 @@ public class WordleDictionaryLoader {
             logDebug.writeExceptionToFile("Произошла ошибка во время чтения файла: " + ex.getMessage());
         }
 
-        return new WordleDictionary(logDebug,fileWords);
+        return new WordleDictionary(logDebug, fileWords);
     }
 }
