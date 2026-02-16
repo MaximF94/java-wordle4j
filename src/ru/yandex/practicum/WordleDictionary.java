@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class WordleDictionary {
 
-    public final int MAX_LETTERS = 5;
+    public static final int MAX_LETTERS = 5;
 
     private List<String> words;
     private List<String> gameWords;
