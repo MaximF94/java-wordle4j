@@ -21,7 +21,7 @@ import java.util.*;
  */
 public class WordleGame {
 
-    public final int MAX_ATTEMPTS = 6;
+    public static final int MAX_ATTEMPTS = 6;
 
     private String answer;
 
