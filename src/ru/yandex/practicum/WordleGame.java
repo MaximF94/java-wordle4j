@@ -97,16 +97,9 @@ public class WordleGame {
             System.out.println();
         }
         steps++;
-        //Решил добавить для примера здесь. Ранее обсуждали в ЛС.
-        //Хотел уточнить, как именно должен быть реализовать данный метод?
-        try (LogDebug logDebug1 = new LogDebug("log.txt")) {
-            if (steps >= MAX_ATTEMPTS) {
-                throw new TooManyAttemptsException("Вы исчерпали все попытки");
-            }
-        } catch (TooManyAttemptsException e) {
-            logDebug.writeExceptionToFile(e.getMessage());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+
+        if (steps >= MAX_ATTEMPTS) {
+            logDebug.writeExceptionToFile("Вы исчерпали все попытки");
         }
     }
 

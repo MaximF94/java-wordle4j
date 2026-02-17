@@ -31,24 +31,26 @@ public class WordleDictionary {
             logDebug.writeExceptionToFile(e.getMessage());
         }
 
-        normalize();
-    }
 
-    private void normalize() {
         String finalWord;
         gameWords = new ArrayList<>();
 
         for (int i = 0; i < words.size(); i++) {
-            finalWord = words.get(i);
-            if (finalWord.length() == MAX_LETTERS) {
-                finalWord = finalWord.toLowerCase();
-                finalWord = finalWord.replace("ё", "е");
-                finalWord = finalWord.trim();
+            if (words.get(i).length() == MAX_LETTERS) {
+                finalWord = normalize(words.get(i));
                 gameWords.add(finalWord);
             }
         }
-
     }
+
+    private String normalize(String word) {
+        word = word.toLowerCase();
+        word = word.replace("ё", "е");
+        word = word.trim();
+
+        return word;
+    }
+
 
     public List<String> getWords() {
         return gameWords;

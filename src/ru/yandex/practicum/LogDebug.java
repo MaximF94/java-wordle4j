@@ -16,7 +16,6 @@ public class LogDebug implements AutoCloseable {
         }
     }
 
-    //К сожалению, код перестал работать. Что я сделал не так?
     public void writeExceptionToFile(String exceptionInfo) {
         try {
             writer.write(exceptionInfo);

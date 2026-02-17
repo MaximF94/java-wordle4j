@@ -15,13 +15,16 @@ public class Wordle {
 
     public static void main(String[] args) {
 
-        LogDebug logDebug = new LogDebug("log.txt");
 
-        WordleDictionaryLoader wordleDictionaryLoader = new WordleDictionaryLoader(logDebug);
-        WordleDictionary wordleDictionary = wordleDictionaryLoader.readWordsFromFile("words_ru.txt");
-        WordleGame wordleGame = new WordleGame(logDebug, wordleDictionary);
+        try (LogDebug logDebug = new LogDebug("log.txt")) {
+            WordleDictionaryLoader wordleDictionaryLoader = new WordleDictionaryLoader(logDebug);
+            WordleDictionary wordleDictionary = wordleDictionaryLoader.readWordsFromFile("words_ru.txt");
+            WordleGame wordleGame = new WordleGame(logDebug, wordleDictionary);
+            wordleGame.game();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
-        wordleGame.game();
 
     }
 
