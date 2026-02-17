@@ -2,7 +2,6 @@ package ru.yandex.practicum;
 
 import ru.yandex.exceptions.IncorrectWordLengthException;
 import ru.yandex.exceptions.InvalidCharacterException;
-import ru.yandex.exceptions.TooManyAttemptsException;
 import ru.yandex.exceptions.WordNotFoundInDictionary;
 
 import java.util.*;
